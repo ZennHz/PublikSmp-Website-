@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVER SURVIVAL - Minecraft Multiplayer Survival</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        
+        .minecraft-text {
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+        }
+        
+        .gradient-border {
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e) padding-box,
+                        linear-gradient(135deg, #2563eb, #3b82f6) border-box;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        
+        .server-status {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #2563eb;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-black/90 backdrop-blur-md fixed w-full z-50 border-b border-blue-600/20">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-cube text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-white minecraft-text">SERVER SURVIVAL</h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-300 hover:text-blue-400 transition-colors">Fitur</a>
+                    <a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors">Tentang</a>
+                    <a href="#join" class="text-gray-300 hover:text-blue-400 transition-colors">Bergabung</a>
+                </div>
+                
+                <button class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="container mx-auto text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <div class="w-24 h-24 mx-auto mb-6 bg-blue-600 rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-gamepad text-white text-4xl"></i>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-bold text-white mb-4 minecraft-text">
+                        SERVER SURVIVAL
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Pengalaman Minecraft Survival Multiplayer Terbaik dengan Fitur Lengkap!
+                    </p>
+                </div>
+
+                <!-- Server Info -->
+                <div class="gradient-border rounded-2xl p-8 mb-12">
+                    <h3 class="text-2xl font-bold text-white mb-6">INFO SERVER</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="bg-blue-900/50 rounded-lg p-4">
+                                <i class="fas fa-server text-blue-400 text-2xl mb-2"></i>
+                                <h4 class="text-lg font-semibold text-white mb-2">IP Address</h4>
+                                <div class="bg-black/50 rounded px-4 py-3">
+                                    <code class="text-blue-400 text-xl font-mono">PublikSmp.id</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-blue-900/50 rounded-lg p-4">
+                                <i class="fas fa-code-branch text-blue-400 text-2xl mb-2"></i>
+                                <h4 class="text-lg font-semibold text-white mb-2">Versi</h4>
+                                <div class="bg-black/50 rounded px-4 py-3">
+                                    <span class="text-green-400 text-xl font-semibold">Java & Bedrock</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-green-900/20 rounded-lg border border-green-600/30">
+                        <div class="flex items-center justify-center space-x-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full pulse-animation"></div>
+                            <span class="text-green-400 font-semibold">SERVER ONLINE - 24/7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 bg-black/30">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-white mb-16 minecraft-text">FITUR SERVER</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Shop Feature -->
+                <div class="feature-card rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-store text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">SHOP SYSTEM</h3>
+                    <p class="text-gray-300">
+                        Sistem ekonomi yang lengkap dengan market player-driven. Jual beli item dengan pemain lain!
+                    </p>
+                    <div class="mt-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3f42a6ab-ce73-42ba-a6cc-711f0378d058.png" alt="Minecraft marketplace shop interface with trading stalls and item displays" class="rounded-lg w-full h-32 object-cover" />
+                    </div>
+                </div>
+
+                <!-- PvP Feature -->
+                <div class="feature-card rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-red-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-fist-raised text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">PvP ARENA</h3>
+                    <p class="text-gray-300">
+                        Arena PvP custom dengan berbagai mode permainan dan ranking system. Buktikan skill combatmu!
+                    </p>
+                    <div class="mt-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/255853aa-f5de-431f-9e96-d61ca90c635f.png" alt="Minecraft PvP arena with combat zones and spectator stands" class="rounded-lg w-full h-32 object-cover" />
+                    </div>
+                </div>
+
+                <!-- Adventure Feature -->
+                <div class="feature-card rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-mountain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">ADVENTURE</h3>
+                    <p class="text-gray-300">
+                        Dunia luas dengan custom structures, dungeon, dan rahasia yang menunggu untuk dijelajahi!
+                    </p>
+                    <div class="mt-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4782c7ca-f25c-4aa0-9888-04a12e7acd73.png" alt="Minecraft adventure landscape with custom structures and exploration areas" class="rounded-lg w-full h-32 object-cover" />
+                    </div>
+                </div>
+
+                <!-- Quest Feature -->
+                <div class="feature-card rounded-2xl p-6 text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-yellow-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-scroll text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">QUESTS</h3>
+                    <p class="text-gray-300">
+                        Sistem quest dengan storyline menarik dan rewards eksklusif. Selesaikan semua challenge!
+                    </p>
+                    <div class="mt-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ebe050d4-6207-431f-a89e-5b54339c5213.png" alt="Minecraft quest interface with mission objectives and reward system" class="rounded-lg w-full h-32 object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center text-white mb-16 minecraft-text">TENTANG SERVER KAMI</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="bg-blue-900/30 rounded-2xl p-8 h-full">
+                            <h3 class="text-2xl font-bold text-white mb-4">🏆 VISI KAMI</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Menciptakan pengalaman Minecraft survival multiplayer terbaik dengan komunitas yang aktif dan ramah. 
+                                Server kami fokus pada gameplay yang fair dan menyenangkan untuk semua pemain.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="bg-blue-900/30 rounded-2xl p-8 h-full">
+                            <h3 class="text-2xl font-bold text-white mb-4">⚡ FITUR UNGGULAN</h3>
+                            <ul class="text-gray-300 space-y-2">
+                                <li>• 99.9% Uptime Guarantee</li>
+                                <li>• Anti-Cheat System</li>
+                                <li>• Regular Events & Updates</li>
+                                <li>• Friendly Staff Team</li>
+                                <li>• Cross-Platform Support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7008cafc-5c2e-4b9e-8aff-636d76b82c62.png" alt="Minecraft server community showcase with players building and interacting together" class="rounded-2xl mx-auto w-full max-w-2xl" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="py-20 px-4 bg-black/50">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold text-white mb-8 minecraft-text">BERGABUNG SEKARANG!</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="server-status rounded-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">🎮 CARA BERGABUNG</h3>
+                    <div class="text-left space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <p class="text-gray-300">Buka Minecraft Java Edition (1.16-1.20) atau Bedrock Edition</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <p class="text-gray-300">Pilih "Multiplayer" dan klik "Add Server"</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                            <p class="text-gray-300">Masukkan IP: <code class="bg-blue-900 px-2 py-1 rounded">PublikSmp.id</code></p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold">4</span>
+                            </div>
+                            <p class="text-gray-300">Klik "Join Server" dan mulailah petualanganmu!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pulse-animation inline-block">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-play mr-2"></i>
+                        JOIN SERVER NOW
+                    </button>
+                </div>
+
+                <div class="mt-8 text-gray-400">
+                    <p>📊 <strong>50+</strong> Players Online • <strong>1000+</strong> Registered Members</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black/80 py-12 px-4 border-t border-blue-600/20">
+        <div class="container mx-auto">
+            <div class="text-center">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-discord text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                </div>
+                
+                <p class="text-gray-400 mb-4">
+                    © 2024 SERVER SURVIVAL. All rights reserved.
+                </p>
+                
+                <div class="text-sm text-gray-500">
+                    <p>Minecraft is a trademark of Mojang Studios. This server is not affiliated with Mojang or Microsoft.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
